@@ -6,7 +6,7 @@ import appletvlogo from '../assets/appletv.png'
 
 export const Banners = () => {
     return (
-        <div className="w-screen">
+        <div className="flex flex-col w-screen gap-2 bg-white">
             <Section title="iPhone" 
             description="Say hello to the latest generation of iPhone" 
             buttonTxt="Shop iPhone"
@@ -16,16 +16,14 @@ export const Banners = () => {
             description="Now supercharged by the M3 chip."
             buttonTxt="Buy"
             backgroundImage={ipadair}
-            logoOffset="-mt-75"
-            />
+            logoOffset="-mt-75"/>
 
             <Section logo={appletvlogo}
             description="Monsters collide. Season 2 is here."
             buttonTxt="Stream now"
             backgroundImage={appletvbg}
             hideLearnMore
-            pushDown
-            />
+            pushDown />
 
         </div>
     )
