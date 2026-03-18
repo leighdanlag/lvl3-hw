@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { About } from "./pages/About"
+import { Contact } from "./pages/Contact"
+import { Home } from "./pages/Home"
+import { Login } from "./pages/Login"
+import { SignUp } from "./pages/SignUp"
 
-export const Signup = () => {
+function App() {
   /**
    * 1. Form
    *  - input: username
@@ -23,5 +28,6 @@ export const Signup = () => {
    *  - revalidate the user => global state
    */
 
-  return <></>;
+  return <>
+  </>;
 };

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { redirect } from "react-router";
+import { useNavigate } from "react-router";
+import { useAuth } from "../context/AuthContext";
 
 /**
  * username: string;
@@ -12,6 +13,9 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
 
+  const { login } = useAuth();    //grab login prop from useAuth context (AuthContext props)
+  const navigate = useNavigate();
+
   function validateUser() {
     if (
       username !== localStorage.getItem("username") ||
@@ -21,24 +25,27 @@ export const Login = () => {
       return null;
     }
 
-
-    return redirect("/home");
+    login(username);
+    navigate("/dashboard");
+    
   }
 
   return (
-    <>
-      {error && <p>{error}</p>}
-      <input
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
-      />
-      <input
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      />
-      <button onClick={validateUser}>Submit</button>
-    </>
+    <div className="flex items-center">
+      <div className="flex flex-col gap-5">
+        {error && <p>{error}</p>}
+        <input
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+        />
+        <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+        <button onClick={validateUser}>Submit</button>
+      </div>
+    </div>
   );
 };

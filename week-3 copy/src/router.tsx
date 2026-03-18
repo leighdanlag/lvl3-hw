@@ -1,8 +1,9 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import SignUp from "./pages/SignUp";
+import Dashboard from "./pages/Dashboard";
 import { Login } from "./pages/Login";
 import { PublicLayout } from "./layouts/PublicLayout";
 import { ProtectedLayout } from "./layouts/ProtectedLayout";
@@ -24,32 +25,18 @@ export const router = createBrowserRouter([
     path: "/",
     Component: PublicLayout,
     children: [
-      {
-        path: "/home",
-        Component: Home,
-      },
-      {
-        path: "/about",
-        Component: About,
-      },
-      {
-        path: "/contact",
-        Component: Contact,
-      },
-      {
-        path: "/signup",
-        Component: SignUp,
-      },
-      {
-        path: "/login",
-        Component: Login,
-      },
+      { index: true, element: <Navigate to="/login" replace /> },
+      { path: "/login", Component: Login },
+      { path: "/signup", Component: SignUp },
+      { path: "/home", Component: Home },
+      { path: "/about", Component: About },
+      { path: "/contact", Component: Contact },
     ],
-
-    path: "",
-    Component: ProtectedLayout;
+  },
+  {
+    Component: ProtectedLayout,
     children: [
-
+      { path: "/dashboard", Component: Dashboard },
     ],
   },
 ]);
