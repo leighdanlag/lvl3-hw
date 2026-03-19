@@ -1,5 +1,6 @@
 import { Outlet, Navigate } from "react-router";
 import { useAuth } from "../context/AuthContext";
+import { Navbar } from "../components/Navbar"
 
 export function ProtectedLayout() {
   // user validation
@@ -9,6 +10,7 @@ export function ProtectedLayout() {
 
   return (
     <div>
+      <Navbar />
       <Outlet />
     </div>
   );

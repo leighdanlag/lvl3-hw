@@ -11,11 +11,12 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export function useAuth() {
     const context = useContext(AuthContext);
+    if (!context) throw new Error('useAuth must be used inside AuthProvider');
     return context;
 }
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const [user, setUser] = useState<string | null>(null);
+    const [user, setUser] = useState<string | null>(localStorage.getItem("username"));
 
     const login = (username: string) => {
         setUser(username);
@@ -23,6 +24,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const logout = () => {
         setUser(null);
+        localStorage.removeItem("username");
+        localStorage.removeItem("password");
+        localStorage.removeItem("isLoggedIn");
     };
 
     return (
